@@ -6,6 +6,15 @@ import Button from './components/Button'
 import AddTodo from './components/AddTodo'
 import DisplayTodo from './components/DisplayTodo'
 import { useState } from 'react'
+import {Routes,Route,Navigate} from "react-router-dom"
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Home from './pages/Home'
+import NavBarB from './components/NavBarB.js'
+import NotFound from './pages/NotFound'
+import UserPage from './pages/UserPage'
+import Api from './components/Api'
+import Effect from './components/Effect'
 function App(){
   // const sayHello = (myName)=>{
   //   alert("Hello "+ myName);
@@ -16,13 +25,18 @@ function App(){
   const [allTodo, setallTodo] = useState([])
   return(
   <>
-    <AddTodo pushTodo={pushTodo}/>
-    <DisplayTodo allTodo={allTodo}/>
-    {/* <Button title="Edit" color="btn btn-warning" sayHello={sayHello}/>
-    <Button title="Delete" color="btn btn-danger" sayHello={sayHello}/>
-    <Button title="Rusticate" color="btn btn-dark"  sayHello={sayHello}/> */}
-    {/* <StudentPortal/> */}
-   
+    <NavBarB/>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/:username' element={<UserPage/>}/>
+      <Route path='/home' element={<Navigate to='/'/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='/contact' element={<Contact/>}/>
+      <Route path ="/api" element={<Api/>}/>
+      <Route path ="/effect" element={<Effect/>}/>
+      <Route path='*' element={<NotFound/>}/>
+    </Routes>
+
   </>
   )
 }
